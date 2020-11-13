@@ -1,0 +1,2 @@
+Ова наредба треба да се извршува од cmd, треба да се навигира до фолдерот каде што се наоѓат фајлот osmfilter.exe, skopje-latest.osm и osmconvert64-0.8.8p.exe и после од таму да се користи наредбата osmfilter.
+Наредбата: osmfilter skopje-latest.osm --keep="amenity=atm or atm=yes" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name addr:street opening_hours wheelchair drive-through" --csv-headline --csv-separator="," -o="skopje_atm.csv"
