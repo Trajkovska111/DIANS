@@ -1,0 +1,74 @@
+﻿@model AtmLocator.Models.Atm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Atm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wheelchair)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wheelchair)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drive_Through)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drive_Through)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
