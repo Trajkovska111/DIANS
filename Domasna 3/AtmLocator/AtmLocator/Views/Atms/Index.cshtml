@@ -1,0 +1,111 @@
+﻿@model IEnumerable<AtmLocator.Models.Atm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+        integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+
+<h2>Atms Near Me</h2>
+
+<div id="map"></div>
+<style>
+    #map {
+        height: 360px;
+    }
+</style>
+
+<script>
+    
+    var map = L.map('map').setView([41.9981, 21.4254], 11);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoiaWxpZXZhbCIsImEiOiJja2k4czcycHowOG94MnVsN2ZtbjJhZmEyIn0.a-nzOpBta_EYzu1CW8DXmg'
+    }).addTo(map);
+
+    
+</script>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="atmsTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wheelchair)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drive_Through)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+  
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpenHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wheelchair)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Drive_Through)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+
+    <script>
+        $("#atmsTable").DataTable();
+    </script>
+
+}
