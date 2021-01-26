@@ -1,0 +1,184 @@
+﻿@model IEnumerable<AtmLocator.Models.Atm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<input type="hidden" id="locationsAtms" data-value="@ViewBag.locations" />
+
+<h2 id="nearestAtm"></h2>
+<span>If you want to look at the route from your current location to the nearest atm please write the given coordinates into the search box</span>
+<p>If you want to find the way to a given atm please click on the details button</p>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+        integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+
+<h4>Atms in Skopje</h4>
+
+<div id="map"></div>
+<style>
+    #map {
+        height: 360px;
+    }
+</style>
+
+<script>
+
+    var map = L.map('map').setView([41.9981, 21.4254], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoiaWxpZXZhbCIsImEiOiJja2k4czcycHowOG94MnVsN2ZtbjJhZmEyIn0.a-nzOpBta_EYzu1CW8DXmg'
+    }).addTo(map);
+
+    var locations = [[42.0036936, 21.3946845], [41.9921343, 21.4266335], [42.0079825, 21.3842855], [42.0043009, 21.3847909], [42.0058046, 21.4171593], [41.9967167, 21.4998343], [42.005028, 21.3833142], [42.0073792, 21.3682515], [42.0063452, 21.3681939], [42.0075172, 21.3683899], [42.0069351, 21.3650349], [42.0031153, 21.3989023], [42.0029983, 21.4641508], [41.9947725, 21.4100251], [41.9937422, 21.417619], [42.0064284, 21.3577339], [41.9818419, 21.4400132], [42.0136404, 21.4452888], [41.9976152, 21.4263503], [41.9846465, 21.4390666], [41.9908011, 21.4447857], [42.0038557, 21.3863849], [42.0030413, 21.4000421], [42.0028422, 21.4011278], [41.9909328, 21.4455925], [41.9989126, 21.435174], [41.9993417, 21.4357789], [41.9937271, 21.4425083], [41.9953834, 21.4345612], [41.9928192, 21.4299102], [42.0139201, 21.4062413], [42.0139259, 21.4061361], [41.9944722, 21.3959313], [41.996706, 21.4050875], [42.0005737, 21.3916984], [42.0010817, 21.3900585], [42.001081, 21.3900911], [42.0010181, 21.3900584], [41.9944772, 21.3959333], [41.9951423, 21.4292834], [41.9757707, 21.443976], [42.0045813, 21.3925292], [41.9849643, 21.4658037], [41.9809158, 21.4405696], [41.981848, 21.4400507], [41.998869, 21.4205887], [41.9987428, 21.4214196], [41.9938379, 21.4171609], [42.0046642, 21.3909854], [41.9983327, 21.3924412], [41.9992965, 21.418512], [41.9920274, 21.4295739], [41.9939123, 21.4009084], [42.015202, 21.399685], [42.0137911, 21.4039823], [41.9909851, 21.4456144], [41.9952945, 21.4345705], [42.0034052, 21.3964504], [42.0033742, 21.3966968], [41.9957551, 21.4333409], [41.9917059, 21.4378292], [42.0035936, 21.5041118], [41.9974347, 21.4344946], [41.9952698, 21.4328457], [41.9963482, 21.4276726], [41.9993025, 21.4184814], [42.0142495, 21.4457121], [41.9837535, 21.4701282], [42.0065804, 21.3597505], [42.0067318, 21.3570683], [42.0065931, 21.359169], [42.0067621, 21.3575725], [42.0032539, 21.3746296], [41.9972771, 21.4087112], [41.9992882, 21.4185028], [41.9984598, 21.4252244], [41.9970916, 21.4297565], [41.9952018, 21.4323164], [41.9837158, 21.4701949], [41.9838577, 21.4699015], [42.0033653, 21.3967495], [42.0025929, 21.4616683], [42.0026662, 21.4617348], [41.9844079, 21.4837986], [42.0038552, 21.4618738], [42.0134867, 21.442704], [41.9937895, 21.427607], [42.0024787, 21.3974984], [41.9916024, 21.4341214], [41.988115, 21.4550178], [41.9941588, 21.430463], [41.9844901, 21.4838556], [41.995781, 21.5008435], [41.9928708, 21.4414426], [41.9771994, 21.4438029], [42.0045231, 21.3925052], [42.0028088, 21.4079598], [42.0072387, 21.3745188], [41.9992965, 21.418512]];
+    console.log(locations.length);
+    var i;
+    for (i = 0; i < locations.length; i++) {
+        L.marker(locations[i]).addTo(map);
+    }
+</script>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table" id="atmsTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wheelchair)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drive_Through)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpenHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wheelchair)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Drive_Through)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<input type="hidden" data-lat="" data-lon="" id="userPos" />
+<input type="hidden" id="url" value="" />
+<input type="hidden" id="rastojanija" value=""/>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $("#atmsTable").DataTable();
+
+        var locations = $("#locationsAtms").data("value");
+        console.log(locations);
+
+        //navigator.geolocation.getCurrentPosition(showPosition);
+
+        function showPosition(position) {
+            $("#userPos").data("lat", position.coords.latitude);
+            $("#userPos").data("lon", position.coords.longitude);
+            var userLAT = $("#userPos").data("lat");
+            var userLON = $("#userPos").data("lon");
+            console.log("LATITUDE: " + userLAT + " LONGITUDE: " + userLON);
+            lokacii = "[{latLng:{lat:" + userLAT + ",lng:" + userLON + "}},";
+            lokacii_soUser = lokacii + "" + $("#locationsAtms").data("value");
+            console.log(lokacii_soUser);
+            var url = 'https://open.mapquestapi.com/directions/v2/routematrix?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ&json={locations:' + lokacii_soUser +
+                ',options:{allToAll:false}}';
+            console.log("URL E ______________________ " + url);
+            $("#url").attr("value", url);
+            url_bezLink = lokacii_soUser +',options:{allToAll:false}}';
+
+            $.ajax({
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    console.log(data['distance']);
+
+                    var distances = data['distance'];
+                    console.log("DISTANCES[1] e " + distances[1]);
+                    $("#rastojanija").attr("value", distances);
+                    var site_atms = $("#locationsAtms").data("value");
+                    console.log(site_atms);
+                    var min = distances[1];
+                    var min_index = 1;
+                    for (var i = 1; i < 100; i++){
+                        if (distances[i] < min) {
+                            min = distances[i];
+                            min_index = i;
+                        }
+                    }
+                    console.log("min e " + min + "so br.index " + min_index);
+                    var listaAtms = site_atms.split('latLng:');
+                    console.log(listaAtms);
+                    $("#nearestAtm").text("The nearest Atm to your current location is the atm with coordinates:" + listaAtms[min_index].substring(1, 30));
+                }
+            });
+            console.log("Hello World")
+        }
+
+        $(document).ready(function () {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            /*var userLAT = $("#userPos").data("lat");
+            var userLON = $("#userPos").data("lon");
+            console.log("LATITUDE: " + userLAT + " LONGITUDE: " + userLON);
+            lokacii = "[{latLng:{lat:" + userLAT + ",lng:" + userLON + "}},";
+            console.log("LOKACII SO USER:_______________ " + lokacii);
+            var url = 'http://open.mapquestapi.com/directions/v2/routematrix?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ&json={locations:' + lokacii +
+                ',options:{allToAll:false}}';*/
+
+        });
+    </script>
+
+}

@@ -1,0 +1,151 @@
+﻿@model AtmLocator.Models.Atm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+        integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ"></script>
+
+
+<style>
+    * {
+        box-sizing: border-box
+    }
+
+    .child {
+        border: 1px dashed white;
+    }
+
+    .parent {
+        display: flex;
+    }
+</style>
+<h2>Details</h2>
+<section class="parent">
+    <section class="child">
+        <div>
+            <h4>Atm</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Longitude)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Longitude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Latitude)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Latitude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.OpenHours)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpenHours)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Wheelchair)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Wheelchair)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Drive_Through)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Drive_Through)
+                </dd>
+
+            </dl>
+        </div>
+    </section>
+    <section class="child">
+        <div id="map"></div>
+        <style>
+            #map {
+                height: 180px;
+                width: 600px;
+                margin-top: 55px;
+                margin-left: 70px;
+            }
+        </style>
+
+        <script>
+
+            var map,
+                dir;
+
+            map = L.map('map', {
+                layers: MQ.mapLayer(),
+                center: [41.9981, 21.4254],
+                zoom: 15
+            });
+
+            dir = MQ.routing.directions();
+
+            map.addLayer(MQ.routing.routeLayer({
+                directions: dir,
+                fitBounds: true
+            }));
+            navigator.geolocation.getCurrentPosition(position => {
+                    const latUSER = position.coords.latitude;
+                    const lonUSER = position.coords.longitude;
+                dir.route({
+                    locations: [
+                        { latLng: { lat: latUSER, lng: lonUSER } },
+                        { latLng: { lat: @Model.Latitude, lng: @Model.Longitude } }
+                    ],
+                });
+                    
+            });
+
+        </script>
+    </section>
+</section>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
