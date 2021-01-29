@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 
 namespace AtmLocator.Models
 {
@@ -18,6 +18,5 @@ namespace AtmLocator.Models
         public string OpenHours { get; set; }
         public string Wheelchair { get; set; }
         public string Drive_Through { get; set; }
-
     }
 }

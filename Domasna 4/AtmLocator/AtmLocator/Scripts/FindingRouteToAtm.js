@@ -1,4 +1,4 @@
-﻿function findingRouteToAtm( destinationLatitude, destinationLongitude) {
+﻿function findingRouteToAtm(destinationLatitude, destinationLongitude) {
     var map, direction;
     //variable that contains the map
     map = L.map('map', {
@@ -20,8 +20,9 @@
                 //position.coords.latitude = user's latitude; position.coords.longitude = user's longitude
                 { latLng: { lat: position.coords.latitude, lng: position.coords.longitude } },
                 {
-                    latLng: { lat: destinationLatitude, lng: destinationLongitude } }
-                    ],
-                });       
-            });
+                    latLng: { lat: destinationLatitude, lng: destinationLongitude }
+                }
+            ],
+        });
+    });
 }
