@@ -89,57 +89,69 @@
 
     <script>
         $("#atmsTable").DataTable();
-
+        // get all atm locations
         var locations = $("#locationsAtms").data("value");
-        console.log(locations);
 
-        //navigator.geolocation.getCurrentPosition(showPosition);
-
-        function showPosition(position) {
+        function findNearestAtm(position) {
+            // get user location
             $("#userPos").data("lat", position.coords.latitude);
             $("#userPos").data("lon", position.coords.longitude);
+            //user latitude
             var userLAT = $("#userPos").data("lat");
+            //user longitude
             var userLON = $("#userPos").data("lon");
-            console.log("LATITUDE: " + userLAT + " LONGITUDE: " + userLON);
-            lokacii = "[{latLng:{lat:" + userLAT + ",lng:" + userLON + "}},";
-            lokacii_soUser = lokacii + "" + $("#locationsAtms").data("value");
-            console.log(lokacii_soUser);
+
+            // add user location to the locations of all atms and put them in param lokacii_soUser
+            lokacii_soUser = "[{latLng:{lat:" + userLAT + ",lng:" + userLON + "}}," + "" + $("#locationsAtms").data("value");
+
+            // create the url for ajax call
             var url = 'https://open.mapquestapi.com/directions/v2/routematrix?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ&json={locations:' + lokacii_soUser +
                 ',options:{allToAll:false}}';
             console.log("URL E ______________________ " + url);
             $("#url").attr("value", url);
-            url_bezLink = lokacii_soUser + ',options:{allToAll:false}}';
 
+            // make ajax call to mapquestapi.com to get distance from user to all atm locations
             $.ajax({
                 url: url,
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
-                    console.log(data['distance']);
 
                     var distances = data['distance'];
-                    console.log("DISTANCES[1] e " + distances[1]);
-                    $("#rastojanija").attr("value", distances);
-                    var site_atms = $("#locationsAtms").data("value");
-                    console.log(site_atms);
-                    var min = distances[1];
-                    var min_index = 1;
-                    for (var i = 1; i < 100; i++) {
-                        if (distances[i] < min) {
-                            min = distances[i];
-                            min_index = i;
-                        }
-                    }
-                    console.log("min e " + min + "so br.index " + min_index);
-                    var listaAtms = site_atms.split('latLng:');
-                    $("#nearestAtm").text("The nearest Atm to your current location is the atm with coordinates:" + listaAtms[min_index].substring(1, 30));
+                    // find the atm that is closest to the user's location
+                    //input argument is an array that contains all the distances from user location to all atm locations
+                    findMinDistance(distances);
                 }
             });
         }
 
-        $(document).ready(function () {
-            navigator.geolocation.getCurrentPosition(showPosition);
 
+        function findMinDistance(distances) {
+
+            $("#rastojanija").attr("value", distances);
+            // get all atm locations
+            var site_atms = $("#locationsAtms").data("value");
+            // get first element in the array
+            var min = distances[1];
+            // put min_index as 1
+            var min_index = 1;
+            for (var i = 1; i < 100; i++) {
+                if (distances[i] < min) {
+                    // if distance is smaller than the min distance , replace the min distance with distance[i] and put min_index to i
+                    min = distances[i];
+                    min_index = i;
+                }
+            }
+
+            var listaAtms = site_atms.split('latLng:');
+            // put the coordinates to the nearest atm to a h2 tag so the user is notified about which and where is the nearest atm
+            $("#nearestAtm").text("The nearest Atm to your current location is the atm with coordinates:" + listaAtms[min_index].substring(1, 30));
+
+        }
+
+
+        $(document).ready(function () {
+            // get user location and input argument is the function findNearestAtm - which finds nearest atm to users location
+            navigator.geolocation.getCurrentPosition(findNearestAtm);
         });
     </script>
 }

@@ -40,13 +40,13 @@ namespace AtmLocator
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            /*services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
-            }));*/
-            
+            }));
+
             //services.AddCustomHeader("Access-Control-Allow-Origin", "*")
         }
 

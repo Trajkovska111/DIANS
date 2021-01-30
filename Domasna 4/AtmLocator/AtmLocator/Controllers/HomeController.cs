@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AtmLocator.Models;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace AtmLocator.Controllers
 {
@@ -18,9 +20,35 @@ namespace AtmLocator.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            //_ = GetUserLocationMicroServiceAsync();
+
+            //link to the microservice - hardcoded
+            String microServiceURI = "https://localhost:49161/";
+
+            var client = new HttpClient();
+
+            // Passing service base url
+            client.BaseAddress = new Uri(microServiceURI);
+
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //Sending request to find web api REST service resource GetUserLocation using HttpClient  
+            HttpResponseMessage Res = await client.GetAsync("api/Default");
+
+            //Checking the response is successful or not which is sent using HttpClient 
+            UserLocation user = new UserLocation();
+            if (Res.IsSuccessStatusCode)
+            {
+                var ObjResponse = Res.Content.ReadAsStringAsync().Result;
+                user.Location = ObjResponse.ToString().Substring(1, 15);
+                string[] parts = ObjResponse.ToString().Substring(1, 15).Split(',');
+                user.Longitude = parts[1];
+                user.Latitude = parts[0];
+            }
+            return View(user);
         }
 
         public IActionResult About()

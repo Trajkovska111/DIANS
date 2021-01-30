@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marija\\Desktop\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj": {}
+    "C:\\Users\\User5531\\Desktop\\dianssss\\DIANS\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marija\\Desktop\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj": {
+    "C:\\Users\\User5531\\Desktop\\dianssss\\DIANS\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marija\\Desktop\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj",
+        "projectUniqueName": "C:\\Users\\User5531\\Desktop\\dianssss\\DIANS\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj",
         "projectName": "AtmLocator",
-        "projectPath": "C:\\Users\\Marija\\Desktop\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj",
-        "packagesPath": "C:\\Users\\Marija\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marija\\Desktop\\Domasna 4\\AtmLocator\\AtmLocator\\obj\\",
+        "projectPath": "C:\\Users\\User5531\\Desktop\\dianssss\\DIANS\\Domasna 4\\AtmLocator\\AtmLocator\\AtmLocator.csproj",
+        "packagesPath": "C:\\Users\\User5531\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User5531\\Desktop\\dianssss\\DIANS\\Domasna 4\\AtmLocator\\AtmLocator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marija\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User5531\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
@@ -87,12 +85,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.11, 3.1.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -101,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

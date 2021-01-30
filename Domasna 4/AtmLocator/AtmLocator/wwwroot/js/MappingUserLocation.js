@@ -1,4 +1,4 @@
-﻿function mappingUserLocation() {
+﻿function mappingUserLocation(latitude, longitude) {
     //variable that contains the map
     var map;
     map = L.map('map', {
@@ -7,11 +7,7 @@
         zoom: 13
     });
 
-    //getting the user's location
-    navigator.geolocation.getCurrentPosition(position => {
-        const userLatitude = position.coords.latitude;
-        const userLongitude = position.coords.longitude;
-        //adding a marker on the user's location on the map
-        L.marker([userLatitude, userLongitude]).addTo(map);
-    });
+    //adding a marker on the user's location on the map
+    L.marker([latitude, longitude]).addTo(map);
+
 }
