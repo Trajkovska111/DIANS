@@ -1,0 +1,18 @@
+﻿* {
+    box-sizing: border-box
+}
+
+.child {
+    border: 1px dashed white;
+}
+
+.parent {
+    display: flex;
+}
+
+#map {
+    height: 360px;
+    width: 600px;
+    margin-top: 55px;
+    margin-left: 70px;
+}

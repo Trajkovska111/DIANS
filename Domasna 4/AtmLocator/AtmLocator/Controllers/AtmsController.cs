@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using AtmLocator.Data;
 using AtmLocator.Models;
 
 namespace AtmLocator.Controllers
 {
     public class AtmsController : Controller
     {
-        private AtmsContext db = new AtmsContext();
+        private readonly ApplicationDbContext _context;
 
+        public AtmsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         // GET: Atms
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            /*var locations = "";
+            var locations = "";
             var i = 0;
-            foreach (var atm in db.Atms.ToList())
+            foreach (var atm in _context.Atm.ToList())
             {
                 locations += "{latLng:{lat:" + atm.Latitude + ",lng:" + atm.Longitude + "}}";
                 i++;
                 if (i <= 98) locations += ",";
             }
-            locations += "]";*/
-
+            locations += "]";
             //Variable to store the locations  
-            var locations = AtmsLocationFinder();
+            //var locations = AtmsLocationFinder();
             ViewBag.locations = locations;
             var url = "http://open.mapquestapi.com/directions/v2/routematrix?key=QbatUJWoSWVuXhsUyWPuUjWCwBTUM6TJ&json={locations:" + locations +
             ",options:{allToAll:false}}";
             ViewBag.url = url;
-            ViewBag.allAtms = db.Atms.ToList();
-            return View(db.Atms.ToList());
+            return View(await _context.Atm.ToListAsync());
         }
 
         //Function to get all the locations of the ATMs
@@ -43,37 +45,36 @@ namespace AtmLocator.Controllers
         {
             var locations = "";
             var i = 0;
-            foreach (var atm in db.Atms.ToList())
+            foreach (var atm in _context.Atm.ToList())
             {
-                locations += "{latLng:{lat:" + atm.Latitude + ",lng:" + atm.Longitude + "}}"; 
+                locations += "{latLng:{lat:" + atm.Latitude + ",lng:" + atm.Longitude + "}}";
             }
-            locations = locations.Substring(0, locations.Length - 1);
+            locations = locations.Substring(0, locations.Length - 2);
             locations += "]";
             return locations;
         }
 
         // GET: Atms/Details/5
-        public ActionResult Details(int? id)
+        public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
-            Atm atm = db.Atms.Find(id);
+
+            var atm = await _context.Atm
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (atm == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(atm);
         }
 
-        protected override void Dispose(bool disposing)
+        private bool AtmExists(long id)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return _context.Atm.Any(e => e.ID == id);
         }
     }
 }

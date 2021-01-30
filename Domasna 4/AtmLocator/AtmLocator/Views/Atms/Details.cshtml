@@ -1,108 +1,72 @@
 ﻿@model AtmLocator.Models.Atm
 
 @{
-    ViewBag.Title = "Details";
+    ViewData["Title"] = "Details";
 }
 
-<style>
-    * {
-        box-sizing: border-box
-    }
+<link rel="stylesheet" href="~/css/RouteMap.css" />
 
-    .child {
-        border: 1px dashed white;
-    }
-
-    .parent {
-        display: flex;
-    }
-</style>
-<h2>Details</h2>
+<h1>Details</h1>
 <section class="parent">
     <section class="child">
         <div>
             <h4>Atm</h4>
             <hr />
-            <dl class="dl-horizontal">
-                <dt>
+            <dl class="row">
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Longitude)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Longitude)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Latitude)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Latitude)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Name)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Name)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Street)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Street)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.OpenHours)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.OpenHours)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Wheelchair)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Wheelchair)
                 </dd>
-
-                <dt>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Drive_Through)
                 </dt>
-
-                <dd>
+                <dd class="col-sm-11">
                     @Html.DisplayFor(model => model.Drive_Through)
                 </dd>
-
             </dl>
         </div>
     </section>
     <section class="child">
         <div id="map"></div>
-        <style>
-            #map {
-                height: 180px;
-                width: 600px;
-                margin-top: 55px;
-                margin-left: 70px;
-            }
-        </style>
-
         <script>
             //drawing the route from the user's location to the selected atm on map
+            //this function is in the FindingRouteToAtm.js file
             findingRouteToAtm(@Model.Latitude, @Model.Longitude);
         </script>
     </section>
 </section>
-
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
-
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>

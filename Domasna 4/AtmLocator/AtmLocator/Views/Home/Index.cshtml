@@ -5,21 +5,19 @@
 <div class="jumbotron">
     <h1>ATM Locator</h1>
     <p class="lead">ATM Locator is a free web app for locating ATMs in Skopje.</p>
-    <p><a href="https://en.wikipedia.org/wiki/Skopje" class="btn btn-primary btn-lg">Learn more about Skopje&raquo;</a></p>
+    <p><a href="https://en.wikipedia.org/wiki/Skopje" class="btn btn-primary">Learn more about Skopje&raquo;</a></p>
 </div>
 
 <div class="row">
     <h2>Below is an interactive map, to get to know Skopje better</h2>
 </div>
 
-<div id="map"></div>
-<style>
-    #map {
-        height: 360px;
-    }
-</style>
+<div id="map" style="height:360px"></div>
 
-<script>
-    //locating user on map
-    mappingUserLocation();
-</script>
+@section scripts {
+    <script>
+        //locating user on map
+        mappingUserLocation();
+    </script>
+}
+
