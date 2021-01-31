@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtmLocator", "AtmLocator\AtmLocator.csproj", "{D2E7C0DA-CD9E-4F84-8D86-B8B6B3AB161F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtmLocator", "AtmLocator\AtmLocator.csproj", "{D2E7C0DA-CD9E-4F84-8D86-B8B6B3AB161F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F9F4D71D-EA9E-4AF5-96BF-C0BB6237FE61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserLocationMicroService", "UserLocationMicroService\UserLocationMicroService.csproj", "{33AFA832-6BB8-4487-8487-45626D026563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D2E7C0DA-CD9E-4F84-8D86-B8B6B3AB161F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2E7C0DA-CD9E-4F84-8D86-B8B6B3AB161F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2E7C0DA-CD9E-4F84-8D86-B8B6B3AB161F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F4D71D-EA9E-4AF5-96BF-C0BB6237FE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F4D71D-EA9E-4AF5-96BF-C0BB6237FE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F4D71D-EA9E-4AF5-96BF-C0BB6237FE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F4D71D-EA9E-4AF5-96BF-C0BB6237FE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33AFA832-6BB8-4487-8487-45626D026563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AFA832-6BB8-4487-8487-45626D026563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AFA832-6BB8-4487-8487-45626D026563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AFA832-6BB8-4487-8487-45626D026563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

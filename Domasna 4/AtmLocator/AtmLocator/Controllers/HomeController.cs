@@ -25,8 +25,8 @@ namespace AtmLocator.Controllers
             //_ = GetUserLocationMicroServiceAsync();
 
             //link to the microservice - hardcoded
-            String microServiceURI = "https://localhost:49161/";
-
+            //String microServiceURI = "https://localhost:49171/";
+            String microServiceURI = "http://userlocationmicroservice:80/";
             var client = new HttpClient();
 
             // Passing service base url

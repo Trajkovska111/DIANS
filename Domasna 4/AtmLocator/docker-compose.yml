@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  atmlocator:
+    image: ${DOCKER_REGISTRY-}atmlocator
+    ports:
+      - 49173:80
+    build:
+      context: .
+      dockerfile: AtmLocator/Dockerfile
+    networks:
+      - my-network
+    environment:
+      - API_URL=userlocationmicroservice:80
+
+  userlocationmicroservice:
+    image: ${DOCKER_REGISTRY-}userlocationmicroservice
+    ports:
+      - 49171:80
+    build:
+      context: .
+      dockerfile: UserLocationMicroService/Dockerfile
+    networks:
+      - my-network
+   
+networks:
+  my-network:
+    name: my-network
+    external: true
+    driver: bridge

@@ -27,13 +27,12 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      /*"environmentVariables": {
+      "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
         "ASPNETCORE_HTTPS_PORT": "44330",
-        "ConnectionStrings:DefaultConnection": ""
-      },*/
-      "publishAllPorts": true,
-      "useSSL": true
+        "ConnectionStrings:DefaultConnection": "Server=tcp:atmscoreskopje.database.windows.net,1433;Initial Catalog=AtmsCore;Persist Security Info=False;User ID=atm;Password=Fjolamarija1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      },
+      "publishAllPorts": true
     }
   }
 }

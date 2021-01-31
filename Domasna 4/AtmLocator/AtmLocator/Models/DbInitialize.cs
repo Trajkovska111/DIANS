@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AtmLocator.Data;
@@ -17,8 +18,8 @@ namespace AtmLocator.Models
             {
                 return;
             }
-
-            System.IO.StreamReader file = new System.IO.StreamReader("../Data/skopje_atm.csv");
+            //C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\wwwroot\skopje_atm.csv
+            System.IO.StreamReader file = new System.IO.StreamReader("wwwroot/skopje_atm.csv");
             string line = "";
 
             while ((line = file.ReadLine()) != null)

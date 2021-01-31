@@ -696,9 +696,6 @@ C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\bin\Deb
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.csprojAssemblyReference.cache
-C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.csproj.CoreCompileInputs.cache
-C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.RazorAssemblyInfo.cache
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.RazorAssemblyInfo.cs
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.AssemblyInfoInputs.cache
@@ -724,3 +721,8 @@ C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Deb
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.dll
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.pdb
 C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.genruntimeconfig.cache
+C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\bin\Debug\netcoreapp3.1\FreeGeoIPCore.dll
+C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.csproj.CoreCompileInputs.cache
+C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\obj\Debug\netcoreapp3.1\AtmLocator.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User5531\Desktop\dianssss\DIANS\Domasna 4\AtmLocator\AtmLocator\bin\Debug\netcoreapp3.1\wwwroot\skopje_atm.csv
